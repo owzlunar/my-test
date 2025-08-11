@@ -10,7 +10,6 @@ This repository follows a simplified Git Flow branching model with four main bra
 |-------------|-----------------------------------------------------------------|
 | `main`      | Stable, production-ready code. All releases are deployed from here. |
 | `dev`       | Integration branch for features. Active development happens here.   |
-| `release`   | Staging area for final testing before merging to `main`.         |
 | `hotfix`    | For critical fixes applied directly to production (`main`).      |
 
 ---
@@ -20,15 +19,7 @@ This repository follows a simplified Git Flow branching model with four main bra
 1. Branch off from `dev`:
     ```bash
     git checkout dev
-    git checkout -b feature/your-feature-name
-    ```
-
-2. Make changes, commit, and merge back to `dev`:
-    ```bash
-    git add .
-    git commit -m "Add: your feature"
-    git checkout dev
-    git merge feature/your-feature-name
+    git checkout -b feature
     ```
 
 3. Delete the feature branch after merge (optional).
@@ -40,7 +31,7 @@ This repository follows a simplified Git Flow branching model with four main bra
 1. When `dev` is stable and ready for release:
     ```bash
     git checkout dev
-    git checkout -b release/vX.X.X
+    git checkout -b release
     ```
 
 2. Do final testing, fixes, or polishing in `release`.
@@ -83,7 +74,6 @@ This repository follows a simplified Git Flow branching model with four main bra
 ## 📌 Naming Conventions
 
 - `feature/feature-name`
-- `release/v1.0.0`
 - `hotfix/issue-description`
 
 ---
@@ -92,5 +82,4 @@ This repository follows a simplified Git Flow branching model with four main bra
 
 - Use pull requests (PRs) for all merges.
 - Keep `main` deployable at all times.
-- Protect `main`, `dev`, and `release` branches in your repo settings.
 - Use Git tags for all releases (`v1.0.0`, etc.).
