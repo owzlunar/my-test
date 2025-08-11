@@ -1,3 +1,10 @@
+# Git Branching Strategy 
+| สาขา (Branch)      | วัตถุประสงค์ (Purpose)                                                       |
+|-------------|-----------------------------------------------------------------|
+| `main`      | โค้ดที่เสถียรและพร้อมใช้งานในระบบจริง (production) โดยจะเก็บเวอร์ชันที่ปล่อยให้ใช้งานด้วย  |
+| `dev`       | สำหรับการรวมฟีเจอร์ต่าง ๆ และเป็นพื้นที่หลักของการพัฒนา   |
+| `hotfix`    | สำหรับการแก้ไขปัญหาสำคัญแบบเร่งด่วนที่นำไปใช้กับระบบจริง (main) โดยตรง      | 
+
 ```mermaid
 gitGraph
    commit id: "Init"
@@ -22,34 +29,47 @@ gitGraph
 
    checkout dev
    commit id: "Add feature 3"
+
+   checkout hotfix
+   merge main
+   commit id: "Fix bugs 2"
    
+   checkout dev
+   merge hotfix
+
+   checkout main
+   merge hotfix
+   commit id: "Patch 2" tag: "v1.0.2"
+
+   checkout dev
+   commit id: "Add feature 4"
+
    checkout main
    merge dev
    commit id: "Release 1" tag: "v1.1.0"
 
    checkout dev
-   commit id: "Add feature 4"
+   commit id: "Add feature 5"
 
    checkout hotfix
    merge main
-   commit id: "Fix bugs 2"
+   commit id: "Fix bugs 3"
 
    checkout dev
    merge hotfix
 
    checkout main
    merge hotfix
-   commit id: "Patch 2" tag: "v1.1.1"
+   commit id: "Patch 3" tag: "v1.1.1"
 
    checkout dev
-   commit id: "Add feature 5"
+   commit id: "Add feature 6"
 
    checkout main
    merge dev
    commit id: "Release 2" tag: "v1.2.0"
 
    checkout dev
-   commit id: "Add feature 6"
+   commit id: "Add feature 7"
 
 ```
-aaa
