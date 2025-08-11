@@ -1,0 +1,55 @@
+```mermaid
+gitGraph
+   commit id: "Init"
+   commit id: "Start" tag: "v1.0.0"
+
+   branch hotfix
+   branch dev
+
+   checkout dev
+   commit id: "Add feature 1"
+   commit id: "Add feature 2"
+
+   checkout hotfix
+   commit id: "Fix bugs 1"
+   
+   checkout dev
+   merge hotfix
+
+   checkout main
+   merge hotfix
+   commit id: "Patch 1" tag: "v1.0.1"
+
+   checkout dev
+   commit id: "Add feature 3"
+   
+   checkout main
+   merge dev
+   commit id: "Release 1" tag: "v1.1.0"
+
+   checkout dev
+   commit id: "Add feature 4"
+
+   checkout hotfix
+   merge main
+   commit id: "Fix bugs 2"
+
+   checkout dev
+   merge hotfix
+
+   checkout main
+   merge hotfix
+   commit id: "Patch 2" tag: "v1.1.1"
+
+   checkout dev
+   commit id: "Add feature 5"
+
+   checkout main
+   merge dev
+   commit id: "Release 2" tag: "v1.2.0"
+
+   checkout dev
+   commit id: "Add feature 6"
+
+```
+aaa
