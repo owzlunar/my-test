@@ -1,4 +1,4 @@
-# Git Branching Strategy
+# Git Branching Strategy1
 
 This repository follows a simplified Git Flow branching model with four main branches:
 
