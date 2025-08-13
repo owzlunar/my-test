@@ -1,21 +1,23 @@
 # Git Branching Strategy 
 | สาขา (Branch)      | วัตถุประสงค์ (Purpose)                                                       |
 |-------------|-----------------------------------------------------------------|
-| `main`      | โค้ดที่เสถียรและพร้อมใช้งานในระบบจริง (production) โดยจะเก็บเวอร์ชันที่ปล่อยให้ใช้งานด้วย  |
+| `main`      | สำหรับเก็บโค้ดที่เสถียรและพร้อมใช้งานในระบบจริง (production) โดยจะเก็บเวอร์ชันที่ปล่อยให้ใช้งานด้วย  |
 | `dev`       | สำหรับการรวมฟีเจอร์ต่าง ๆ และเป็นพื้นที่หลักของการพัฒนา   |
 | `hotfix`    | สำหรับการแก้ไขปัญหาสำคัญแบบเร่งด่วนที่นำไปใช้กับระบบจริง (main) โดยตรง      | 
+| `release`    | สำหรับทดสอบฟีเจอร์ต่าง ๆที่พัฒนามาก่อนที่จะปล่อยให้ใช้งานในระบบจริง (production)      | 
 
 ```mermaid
 gitGraph
-   commit id: "Init"
-   commit id: "Start" tag: "v1.0.0"
+   commit id: "Init" tag: "v1.0.0"
 
    branch hotfix
+   branch release
    branch dev
+   
 
    checkout dev
-   commit id: "Add feature 1"
-   commit id: "Add feature 2"
+   commit id: "Feature 1"
+   commit id: "Feature 2"
 
    checkout hotfix
    commit id: "Fix bugs 1"
@@ -28,7 +30,7 @@ gitGraph
    commit id: "Patch 1" tag: "v1.0.1"
 
    checkout dev
-   commit id: "Add feature 3"
+   commit id: "Feature 3"
 
    checkout hotfix
    merge main
@@ -42,14 +44,21 @@ gitGraph
    commit id: "Patch 2" tag: "v1.0.2"
 
    checkout dev
-   commit id: "Add feature 4"
+   commit id: "Feature 4"
+
+   checkout release
+   merge dev
+   commit id: "Test 1"
+
+   checkout dev
+   merge release
 
    checkout main
-   merge dev
+   merge release
    commit id: "Release 1" tag: "v1.1.0"
 
    checkout dev
-   commit id: "Add feature 5"
+   commit id: "Feature 5"
 
    checkout hotfix
    merge main
@@ -63,13 +72,19 @@ gitGraph
    commit id: "Patch 3" tag: "v1.1.1"
 
    checkout dev
-   commit id: "Add feature 6"
+   commit id: "Feature 6"
+   commit id: "Feature 7"
 
-   checkout main
+   checkout release
    merge dev
-   commit id: "Release 2" tag: "v1.2.0"
+   commit id: "Test 2"
+   commit id: "Test 3"
 
    checkout dev
-   commit id: "Add feature 7"
+   merge release
+
+   checkout main
+   merge release
+   commit id: "Release 2" tag: "v1.2.0"
 
 ```
